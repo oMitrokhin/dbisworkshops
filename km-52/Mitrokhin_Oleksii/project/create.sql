@@ -29,7 +29,7 @@ create table "User"
 /*==============================================================*/
 create table Available_product 
 (
-   product_name         VARCHAR2(30)         not null,
+   product_name         VARCHAR2(50)         not null,
    product_average_price FLOAT(10)            not null,
    constraint PK_AVAILABLE_PRODUCT primary key (product_name)
 );
@@ -41,7 +41,7 @@ create table User_product
 (
    product_id           INTEGER              not null,
    user_email           VARCHAR2(30)         not null,
-   product_name         VARCHAR2(30)         not null,
+   product_name         VARCHAR2(50)         not null,
    purchase_date        DATE                 not null,
    user_product_price   FLOAT(10)            not null,
    product_count        INTEGER              not null,
@@ -82,7 +82,7 @@ alter table "User"
     
 alter table Available_product
     add constraint check_product_name
-    check (regexp_like (product_name, '[A-Z][a-z]|[A-Z][a-z]+\(,[a-z]\)'));
+    check (regexp_like (product_name, '\w{1,50}'));
     
 alter table Available_product
     add constraint check_product_average_price
