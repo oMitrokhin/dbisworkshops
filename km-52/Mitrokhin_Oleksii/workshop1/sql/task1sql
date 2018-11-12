@@ -1,0 +1,2 @@
+insert into User_product (product_id, user_email, product_name, purchase_date, user_product_price, product_count, product_priority)
+values ('4', (select user_email from "User" where user_password = 'Qwerty123'), (select first(product_name) from Available_product), to_date('2018-11-12', 'YYYY-MM-DD'), '0.6', '10', 'Medium');

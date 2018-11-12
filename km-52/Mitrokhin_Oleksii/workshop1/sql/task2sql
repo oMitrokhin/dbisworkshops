@@ -1,0 +1,5 @@
+delete from User_product
+where product_name = 'Fender Classic Shell Medium Guitar Pick';
+
+delete from Available_product
+where product_name = 'Fender Classic Shell Medium Guitar Pick';
