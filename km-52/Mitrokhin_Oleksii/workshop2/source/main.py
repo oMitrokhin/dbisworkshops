@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 
-@app.route('/api/<action>, methods = [ 'GET'])
+@app.route('/api/<action>', methods = [ 'GET'])
 def api_get(action):
     if action = "user_product":
         return render_template("user_product.html", user_product=user_product_dictionary)
