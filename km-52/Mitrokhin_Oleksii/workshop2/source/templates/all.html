@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All</title>
+</head>
+<body>
+    <table>
+        {% for key, value in user_product.items() %}
+            <tr>
+            <td> {{ key }}</td>
+            <td> {{ value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+<table>
+        {% for key, value in available_product.items() %}
+            <tr>
+            <td> {{ key }}</td>
+            <td> {{ value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

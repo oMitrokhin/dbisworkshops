@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+    <title>User product</title>
+<body>
+    <form action = "/api" method = "POST" id="from_user_product">
+        <p>product_id <input type = "text" name = "product_id" value="{{ user.get('product_id') }}"</p>
+        <p>purchase_date <input type = "text" name = "date" value="{{ user.get('purchase_date') }}"</p>
+        <p>user_product_price <input type = "text" name = "user_price" value="{{ user.get('user_product_price') }}"</p>
+        <p>product_count <input type = "text" name = "product_count" value="{{ user.get('product_count') }}"</p>
+        <p>product_prioity <input type = "text" name = "priority" value="{{ user.get('product_prioity') }}"</p>
+    </form>
+</body>
