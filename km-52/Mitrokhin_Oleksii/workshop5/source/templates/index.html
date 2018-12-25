@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Greetings, {{ user_email }}</h1>
+            <a href = '/logout'>Click here to log out</a>
+
+            {% if role != 'Banned'%}
+                <div>
+                    <a href="/Search product">Add new product</a> <br>
+                    <a href="/My database">My products</a> <br>
+                    <a href="/My account">My products</a> <br>
+
+                    {% if role == 'Admin' %}
+                        <a href="/Users">Work with Users</a> <br>
+                    {% endif %}
+
+                </div>
+            {% else %}
+                <div>
+                    <p>{{ user_email }}, your account is banned.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

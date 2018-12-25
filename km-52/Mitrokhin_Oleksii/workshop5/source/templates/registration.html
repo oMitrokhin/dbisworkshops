@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Registration</h1>
+
+    <a href="/">Back to main menu</a>
+
+    <form action="http://localhost:5000/registration" method="POST">
+        <fieldset>
+            <legend>Registration</legend>
+            {{ form.hidden_tag() }}
+            <div>
+                <div>
+                    {{ form.user_email.label }}     {{ form.user_email }}
+
+                    <br>
+                        {% for message in form.user_email.errors %}
+                            <div> {{ message }} </div>
+                        {% endfor %}
+                    <br>
+                </div>
+
+                <div>
+                    {{ form.password.label }}     {{ form.password }}
+
+                    <br>
+                        {% for message in form.password.errors %}
+                            <div> {{ message }} </div>
+                        {% endfor %}
+                    <br>
+                </div>
+
+                <div>
+                    {{ form.user_information.label }}     {{ form.user_information }}
+
+                    <br>
+                        {% for message in form.user_information.errors %}
+                            <div> {{ message }} </div>
+                        {% endfor %}
+                    <br>
+                </div>
+
+                <div> {{ message }} </div>
+
+                {{ form.submit }}
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
