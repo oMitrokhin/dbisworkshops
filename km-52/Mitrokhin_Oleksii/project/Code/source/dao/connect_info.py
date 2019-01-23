@@ -1,3 +1,3 @@
-username = 'SYS'
-password = 'admin'
+username = 'test_user'
+password = 'user'
 databaseName = "localhost:1521/xe"

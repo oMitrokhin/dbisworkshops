@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+</head>
+<body>
+<h1>Add product</h1>
+<div><br><a href="/">Back to main menu</a></div>
+<div><a href="/Search_product">Undo add</a> </div>
+<form action="http://localhost:5000/Add_product" method="POST">
+    <fieldset>
+
+            {{edit_form.hidden_tag()}}
+            <table>
+
+                <tr>
+                    <td>Product name:</td><td> Average price: </td>
+                </tr>
+                <tr>
+                    <td>{{product_name}}</td><td>{{product_price}}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td> {{edit_form.product_price.label}}   {{edit_form.product_price}} </td>
+                    <td> {{edit_form.product_count.label}}   {{edit_form.product_count}} </td>
+                    <td>{{edit_form.product_purchase_date.label}}   {{edit_form.product_purchase_date}}</td>
+                    <td> {{edit_form.product_priority.label}}   {{edit_form.product_priority}} </td>
+                </tr>
+                <tr>
+                    {% for message in edit_form.product_price.errors %}
+                    <td> {{ message }} </td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <table>
+                <tr>
+                <td>{{message}}</td>
+                 </tr>
+                <tr><td>{{edit_form.edit}}</td></tr>
+
+            </table>
+
+    </fieldset>
+</form>
+</body>
+</html>

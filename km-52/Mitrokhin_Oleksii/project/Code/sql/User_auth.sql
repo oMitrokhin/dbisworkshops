@@ -7,13 +7,18 @@ procedure registration(email in "User".user_email%type, user_pass in "User".user
 function log_in(email in "User".user_email%type, user_pass in "User".user_password%type)
 return "User".user_email%type;
 end User_auth;
-
+/
 create or replace package  body user_auth as
     procedure registration(email in "User".user_email%type, user_pass in "User".user_password%type, information "User".user_information%type)
     is
     begin
-        INSERT INTO "User"(user_email,role, user_password, user_information)
-        values(email,'User', user_pass, information);
+        if email=P_User.get_user_email(email) then
+            DBMS_OUTPUT.put_line('Email already exist');
+        else
+            INSERT INTO "User"(user_email,role, user_password, user_information)
+            values(email,'User', user_pass, information);
+            commit;
+        end if;
 end registration;
 
 function log_in(email in "User".user_email%type, user_pass in "User".user_password%type)

@@ -13,11 +13,13 @@ class RegForm(FlaskForm):
 
     password = PasswordField("Password:", [
                                              validators.DataRequired("Please enter your password."),
-                                             validators.Length(3, 20, "Password should be from 3 to 20 symbols")
+                                             validators.Length(3, 20, "Password should be from 3 to 20 symbols and start with capital letter")
                                           ])
 
 
-    user_information = DateField("User information: ", [ validators.DataRequired("Please enter less iformation.")])
+    user_information = StringField("User information: ",''' [
+                                                            validators.Length(0, 200, "Please enter less iformation.(max 200 symbols")
+                                                        ]''')
 
 
     submit = SubmitField("Register")

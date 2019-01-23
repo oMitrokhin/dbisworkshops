@@ -8,14 +8,12 @@
     <h1>Log in</h1>
 
     <a href="/">Back to main menu</a>
+    <div> <a href="/registration">Registration </a> </div>
 
     <form action="http://localhost:5000/login" method='POST'>
-
         {{ form.hidden_tag() }}
-
         <fieldset>
             <legend>Please, log in</legend>
-
             <div>
                 <div>
                     {{ form.user_email.label }}     {{ form.user_email }}
@@ -26,7 +24,6 @@
                         {% endfor %}
                     <br>
                 </div>
-
                 <div>
                     {{ form.password.label }}     {{ form.password }}
 

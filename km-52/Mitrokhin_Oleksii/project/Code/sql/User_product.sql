@@ -1,3 +1,5 @@
+set serveroutput on
+
 create or replace package P_user_product is
 type user_product_list is record(
     product_name Available_product.product_name%type,
@@ -12,11 +14,11 @@ type tb_user_product is table of user_product_list;
 function get_user_product(email in User_product.user_email%type)
 return tb_user_product
 pipelined;
-procedure add_product_to_userbase (user_email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type);
+procedure add_product_to_userbase (email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type);
 procedure delete_user_product (email in User_product.user_email%type, d_product_name in User_product.product_name%type, d_purchase_date in User_product.purchase_date%type);
-procedure edit_product_in_userbase (email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type);
+procedure edit_product_in_userbase (email in User_product.user_email%type, e_product_name in User_product.product_name%type, e_purchase_date in User_product.purchase_date%type, e_user_product_price in User_product.user_product_price%type, e_product_count in User_product.product_count%type, e_product_priority in User_product.product_priority%type);
 end P_user_product;
-
+/
 create or replace package body P_user_product is
 
 function get_user_product(email in User_product.user_email%type)
@@ -34,24 +36,31 @@ return tb_user_product
             end loop;    
             end get_user_product;
     
-procedure add_product_to_userbase (user_email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type)
+procedure add_product_to_userbase (email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type)
 is
 begin
+if email=P_User.get_user_email(email) and product_priority in ('Low', 'Medium', 'High') then
 insert into User_product(user_email, product_name, purchase_date, user_product_price, product_count, product_priority)
-values(user_email, product_name, purchase_date, user_product_price, product_count, product_priority);
+values(email, product_name, purchase_date, user_product_price, product_count, product_priority);
+commit;
+else
+RETURN;
+end if;
 end;
 procedure delete_user_product (email in User_product.user_email%type, d_product_name in User_product.product_name%type, d_purchase_date in User_product.purchase_date%type)
 is
 begin
 delete from User_product
 where user_email=email and product_name=d_product_name and purchase_date=d_purchase_date;
+commit;
 end;
-procedure edit_product_in_userbase (email in User_product.user_email%type, product_name in User_product.product_name%type, purchase_date in User_product.purchase_date%type, user_product_price in User_product.user_product_price%type, product_count in User_product.product_count%type, product_priority in User_product.product_priority%type)
+procedure edit_product_in_userbase (email in User_product.user_email%type, e_product_name in User_product.product_name%type, e_purchase_date in User_product.purchase_date%type, e_user_product_price in User_product.user_product_price%type, e_product_count in User_product.product_count%type, e_product_priority in User_product.product_priority%type)
 is
 begin
 update User_product
-set user_product_price=user_product_price, product_count=product_count, product_priority=product_priority
-where user_email = email and product_name=product_name and purchase_date=purchase_date;
+set user_product_price=e_user_product_price, product_count=e_product_count, product_priority=e_product_priority
+where user_email = email and product_name=e_product_name and purchase_date=e_purchase_date;
+commit;
 end;
 
 end;

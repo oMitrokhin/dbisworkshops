@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add_new_product_to_base</title>
+</head>
+<body>
+<h1>Add new product to base</h1>
+<div><br><a href="/">Back to main menu</a></div>
+<div><a href="/Search_product">Undo add</a> </div>
+
+<form action="http://localhost:5000/Add_new_product" method="POST">
+    <fieldset>
+            {{form.hidden_tag()}}
+            <table>
+               <tr>Enter product name and average price for new available product!</tr><br>
+                    <tr> {{form.product_name.label}}   {{form.product_name}} </tr><br>
+                    <tr> {{form.product_price.label}}   {{form.product_price}} </tr>
+                <tr>
+                    {% for message in form.product_price.errors %}
+                    <td> {{ message }} </td>
+                    {% endfor %}
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>{{message}}</td>
+                </tr>
+                <tr><td>{{form.add_button}}</td></tr>
+            </table>
+    </fieldset>
+</form>
+
+</body>
+</html>

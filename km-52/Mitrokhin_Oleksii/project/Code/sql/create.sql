@@ -26,7 +26,7 @@ drop table Role cascade constraints;
 /*==============================================================*/
 create table Role 
 (
-   Role                 CHAR(20)             not null,
+   Role                 NVARCHAR2(20)             not null,
    constraint PK_ROLE primary key (Role)
 );
 /*==============================================================*/
@@ -35,7 +35,7 @@ create table Role
 create table "User"
 (
    user_email           VARCHAR2(30)         not null,
-   Role                 CHAR(20)             not null,
+   Role                 NVARCHAR2(20)             not null,
    user_password        VARCHAR2(20)         not null,
    user_information     CLOB,
    constraint PK_USER primary key (user_email)
@@ -70,7 +70,7 @@ create table User_product
    user_product_price   FLOAT(10)            not null,
    product_count        INTEGER              not null,
    product_priority     VARCHAR2(20)         not null,
-   constraint PK_USER_PRODUCT primary key (purchase_date)
+   constraint PK_USER_PRODUCT primary key (user_email, product_name, purchase_date)
 );
 
 /*==============================================================*/

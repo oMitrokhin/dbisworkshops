@@ -12,8 +12,8 @@ class LoginForm(FlaskForm):
     ])
 
     password = PasswordField("Password:", [
-                                             validators.DataRequired("Please enter your password."),
-                                             validators.Length(3, 20, "Password should be from 3 to 20 symbols")
+                                             validators.DataRequired(message="Please enter your password."),
+                                             validators.Length(3, 20, message="Password should be from 3 to 20 symbols")
                                           ])
 
     submit = SubmitField("Log in")

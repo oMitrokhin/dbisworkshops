@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work with Users</title>
+</head>
+<body>
+    <h1>Work with users</h1>
+
+    <div><br><a href="/">Back to main menu</a></div>
+    <form action="http://localhost:5000/Users" method="POST">
+        <fieldset>
+            <div>
+                {{  form.hidden_tag()  }}
+                <table>
+                    <tr>{{form.user_list.label}}</tr>
+                    {% for current in form.user_list %}
+                    <tr>
+                        <td>{{current}}</td> <td>{{current.label}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+            <td>{{form.block_user}}  {{form.delete_user}}</td>
+        </fieldset>
+    </form>
+</body>
+</html>

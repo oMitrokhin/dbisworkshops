@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create recomendation</title>
+</head>
+<body>
+<h1>Create recomendation</h1>
+<div><br><a href="/">Back to main menu</a></div>
+<form action="http://localhost:5000/Create_recomendation" method="POST">
+    <fieldset>
+        <div>
+            {{  form.hidden_tag()  }}
+
+            <table>
+                <div>
+                    You should enter date period for which you'll get recommendation.
+                </div>
+                <div>Products are considered as different if they have different name or priority!</div><br>
+                <tr></tr>
+                <tr>
+                    <td> {{form.start_date.label}}   {{form.start_date}} </td>
+                    <td> {{form.end_date.label}}   {{form.end_date}} </td>
+                    <td> {{form.total_count.label}}   {{form.total_count}} </td>
+                    <td> {{form.create_recomendation}} </td>
+                </tr>
+            </table>
+            {%if status=='visible'%}
+            <table>
+                <div>Recommendation:</div><br>
+                <tr>
+                    <td>Product name:</td><td> Total price: </td><td> Count: </td><td>Priority:</td>
+                </tr>
+
+                {% for current in range(total_count) %}
+                <tr>
+                    <td>{{product_name[loop.index-1]}}</td><td>{{total_price[loop.index-1]}}</td><td> {{ product_count[loop.index-1] }} </td><td> {{ product_priority[loop.index-1] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {%endif%}
+        </div>
+
+    </fieldset>
+</form>
+</body>
+</html>

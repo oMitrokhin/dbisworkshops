@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My products</title>
+</head>
+<body>
+<h1>My products</h1>
+
+<div><br><a href="/">Back to main menu</a></div>
+<form action="http://localhost:5000/My_database" method="POST">
+    <fieldset>
+        <div>
+            {{  form.hidden_tag()  }}
+            <table>
+
+                <tr>
+                    <td> </td><td> </td><td>Product name:</td><td> Price: </td><td>Count: </td><td>Purchase date:</td><td>Priority:</td>
+                </tr>
+
+                <tr>{{form.product_list.label}}</tr>
+
+                {% for current in form.product_list %}
+                <tr>
+                    <td>{{current}}</td> <td>{{current.label}}.</td><td>{{product_name[loop.index-1]}}</td><td>{{product_price[loop.index-1]}}</td><td> {{ product_count[loop.index-1] }} </td><td> {{ product_purchase_date[loop.index-1] }} </td><td> {{ product_priority[loop.index-1] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+        <td>{{form.edit_product}}  {{form.delete_product}}</td>
+
+    </fieldset>
+</form>
+</body>
+</html>

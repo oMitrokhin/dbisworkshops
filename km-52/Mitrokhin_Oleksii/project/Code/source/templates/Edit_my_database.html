@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My products</title>
+</head>
+<body>
+<h1>My products</h1>
+<div><br><a href="/">Back to main menu</a></div>
+<div><a href="/My_database">Back to "My products"</a> </div>
+<form action="http://localhost:5000/Edit_my_database" method="POST">
+    <fieldset>
+        <div>
+            {{edit_form.hidden_tag()}}
+            <table>
+
+                <tr>
+                    <td>Product name:</td><td> Price: </td><td>Count: </td><td>Purchase date:</td><td>Priority:</td>
+                </tr>
+                <tr>
+                    <td>{{product_name}}</td><td>{{product_price}}</td><td> {{ product_count}} </td><td> {{ product_purchase_date}} </td><td> {{ product_priority}}</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td></td>
+                <td> {{edit_form.product_price.label}}   {{edit_form.product_price}} </td>
+                <td> {{edit_form.product_count.label}}   {{edit_form.product_count}} </td>
+                    <td></td>
+                <td> {{edit_form.product_priority.label}}   {{edit_form.product_priority}} </td>
+                </tr>
+                <tr>
+                    {% for message in edit_form.product_price.errors %}
+                    <td> {{ message }} </td>
+                    {% endfor %}
+                </tr>
+                <tr><td>{{edit_form.edit}}</td></tr>
+
+            </table>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

@@ -13,7 +13,7 @@ procedure add_product_to_base (product_name in Available_product.product_name%ty
 procedure delete_product_from_base (d_product_name in User_product.product_name%type);
 
 end P_Av_PR;
-
+/
 create or replace package body P_Av_PR is
 
 function get_available_product
@@ -34,6 +34,7 @@ is
 begin
 insert into Available_product (product_name, product_average_price)
     values (product_name, product_price);
+    commit;
 end;
 procedure delete_product_from_base (d_product_name in User_product.product_name%type)
 is
@@ -42,5 +43,6 @@ delete from User_product
 where d_product_name=product_name;
 delete from Available_product
 where d_product_name=product_name;
+commit;
 end;
 end;
